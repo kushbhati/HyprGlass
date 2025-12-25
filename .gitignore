@@ -1,0 +1,22 @@
+# Editor and IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# User-specific files (these should not be committed)
+*.local
+
+# Cache directories
+__pycache__/
+.cache/

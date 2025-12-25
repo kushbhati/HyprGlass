@@ -1,0 +1,131 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 0,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/mode",
+        "custom/gpu-amd",
+        "custom/gpu-nvidia",
+        "temperature",
+        "cpu",
+        "memory"
+    ],
+    "modules-center": [
+        "clock#day",
+        "clock#time",
+        "clock#date"
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "battery"
+    ],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "clock#time": {
+        "format": "{:%I:%M %p}",
+        "tooltip": false
+    },
+    "clock#day": {
+        "format": "{:%A}",
+        "tooltip": false
+    },
+    "clock#date": {
+        "format": "{:%b %d, %Y}",
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟 Muted",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "~/.config/rofi/scripts/rofi-audio.sh"
+    },
+    "network": {
+        "format-wifi": "󰤨  {essid}",
+        "format-ethernet": "󰈀  {ipaddr}",
+        "format-disconnected": "󰤭  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "~/.config/rofi/scripts/rofi-wifi.sh"
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip-format": "CPU Usage: {usage}%"
+    },
+    "memory": {
+        "format": "󰘚  {percentage}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
+    "battery": {
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "tooltip-format": "Battery: {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "bluetooth": {
+        "format": "󰂯  {status}",
+        "format-connected": "󰂱  {device_alias}",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "tooltip-format": "Bluetooth: {status}",
+        "tooltip-format-connected": "Connected: {device_alias}",
+        "on-click": "~/.config/rofi/scripts/rofi-bluetooth.sh"
+    },
+    "temperature": {
+        "format": "󰔏  {temperatureC}°C",
+        "critical-threshold": 80,
+        "format-critical": "󰸁  {temperatureC}°C",
+        "tooltip": true
+    },
+    // ⚠️ HARDWARE-SPECIFIC: AMD GPU module
+    // Check your card number with: ls /sys/class/drm/
+    // Remove from modules-left if not using AMD GPU
+    "custom/gpu-amd": {
+        "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent 2>/dev/null || echo 'N/A'",
+        "format": "󰍹   {}%",
+        "interval": 2,
+        "tooltip-format": "AMD GPU Usage"
+    },
+    // ⚠️ HARDWARE-SPECIFIC: NVIDIA GPU module
+    // Requires nvidia-smi (NVIDIA drivers)
+    // Remove from modules-left if not using NVIDIA GPU
+    "custom/gpu-nvidia": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null || echo 'N/A'",
+        "format": "󰢮   {}%",
+        "interval": 2,
+        "tooltip-format": "NVIDIA GPU Usage"
+    }
+}

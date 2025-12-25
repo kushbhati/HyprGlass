@@ -1,0 +1,92 @@
+* {
+    bg-col:  #1e1e2ee6;
+    bg-col-light: #1e1e2e;
+    border-col: #1e1e2e;
+    selected-col: #1e1e2e;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+    fg-col2: #f38ba8;
+    grey: #6c7086;
+
+    width: 600;
+    font: "Adwaita Sans 12, JetBrainsMono Nerd Font 12";
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    fullscreen: true;
+    background-color: @bg-col;
+    padding: 10%; /* Responsive padding */
+}
+
+mainbox {
+    background-color: transparent;
+    children: [inputbar, listview];
+    spacing: 60px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-col-light;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 0% 25% 0% 25%;
+    border: 2px;
+    border-color: @blue;
+}
+
+prompt {
+    enabled: false; /* Hide prompt label for cleaner look */
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg-col;
+    placeholder: "Search Applications...";
+    placeholder-color: @grey;
+    horizontal-align: 0.5;
+}
+
+listview {
+    border: 0px;
+    padding: 0px;
+    columns: 7;
+    lines: 4;
+    background-color: transparent;
+    flow: horizontal;
+    fixed-height: true;
+    fixed-columns: true;
+}
+
+element {
+    orientation: vertical;
+    padding: 20px 10px;    
+    border-radius: 12px;
+    background-color: transparent;
+    text-color: @fg-col;
+    cursor: pointer;
+    spacing: 12px;
+}
+
+element-icon {
+    size: 64px;
+    horizontal-align: 0.5;
+    cursor: inherit;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    text-color: inherit;
+    cursor: inherit;
+}
+
+element selected {
+    background-color: @blue;
+    text-color: @bg-col-light;
+    border-radius: 12px;
+}
