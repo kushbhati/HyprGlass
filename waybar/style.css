@@ -46,7 +46,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 * {
-    font-family: "Adwaita Sans", "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "JetbrainsMono", "Ubuntu Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
     font-size: 13px;
 }
 
@@ -85,6 +85,10 @@
 #network,
 #bluetooth,
 #pulseaudio,
+#backlight,
+#power-profiles-daemon,
+#idle_inhibitor,
+#custom-gpu-control,
 #temperature,
 #custom-gpu-amd,
 #custom-gpu-nvidia {
@@ -224,4 +228,65 @@
 
 #battery:hover {
     border-bottom-color: @green;
+}
+
+#battery.low {
+    color: @orange;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.5;
+    }
+}
+
+/* Backlight */
+#backlight {
+    color: @yellow;
+}
+
+#backlight:hover {
+    border-bottom-color: @yellow;
+}
+
+/* Power Profiles */
+#power-profiles-daemon {
+    color: @purple;
+}
+
+#power-profiles-daemon:hover {
+    border-bottom-color: @purple;
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor {
+    color: @subtext0;
+}
+
+#idle_inhibitor.activated {
+    color: @cyan;
+}
+
+#idle_inhibitor:hover {
+    border-bottom-color: @cyan;
+}
+
+/* Privacy Indicators */
+#privacy {
+    color: @red;
+    padding: 0 8px;
+}
+
+/* GPU Control */
+#custom-gpu-control {
+    color: @teal;
+}
+
+#custom-gpu-control:hover {
+    border-bottom-color: @teal;
 }

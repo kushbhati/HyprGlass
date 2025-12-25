@@ -5,7 +5,6 @@
     "spacing": 0,
     "modules-left": [
         "hyprland/workspaces",
-        "hyprland/mode",
         "custom/gpu-amd",
         "custom/gpu-nvidia",
         "temperature",
@@ -19,9 +18,14 @@
     ],
     "modules-right": [
         "tray",
+        "privacy",
+        "idle_inhibitor",
         "pulseaudio",
-        "bluetooth",
+        "backlight",
         "network",
+        "bluetooth",
+        "custom/gpu-control",
+        "power-profiles-daemon",
         "battery"
     ],
     "hyprland/workspaces": {
@@ -48,7 +52,7 @@
         "tooltip": false
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "󰝟 Muted",
         "format-icons": {
             "default": [
@@ -61,24 +65,28 @@
         "on-click": "~/.config/rofi/scripts/rofi-audio.sh"
     },
     "network": {
-        "format-wifi": "󰤨  {essid}",
-        "format-ethernet": "󰈀  {ipaddr}",
-        "format-disconnected": "󰤭  Disconnected",
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "format-disconnected": "󰤭 Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}",
         "on-click": "~/.config/rofi/scripts/rofi-wifi.sh"
     },
     "cpu": {
-        "format": "  {usage}%",
+        "format": " {usage}%",
         "tooltip-format": "CPU Usage: {usage}%"
     },
     "memory": {
-        "format": "󰘚  {percentage}%",
+        "format": "󰘚 {percentage}%",
         "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
     },
     "battery": {
-        "format": "{icon}  {capacity}%",
-        "format-charging": "󰂄  {capacity}%",
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
         "tooltip-format": "Battery: {capacity}%",
+        "states": {
+            "low": 30,
+            "critical": 15
+        },
         "format-icons": [
             "󰁺",
             "󰁻",
@@ -95,9 +103,63 @@
     "tray": {
         "spacing": 10
     },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "󰃞",
+            "󰃟",
+            "󰃠"
+        ],
+        "tooltip-format": "Brightness: {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}",
+        "format-icons": {
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰈈",
+            "deactivated": "󰈉"
+        },
+        "tooltip-format-activated": "Idle inhibitor: ON",
+        "tooltip-format-deactivated": "Idle inhibitor: OFF"
+    },
+    "privacy": {
+        "icon-size": 14,
+        "icon-spacing": 4,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true
+            }
+        ]
+    },
+    // ⚠️ GPU Control: Opens nvidia-settings or radeon-profile
+    // Requires: nvidia-settings (NVIDIA) or radeon-profile (AMD)
+    "custom/gpu-control": {
+        "format": "󰢮",
+        "tooltip-format": "GPU Settings",
+        "on-click": "nvidia-settings 2>/dev/null || radeon-profile 2>/dev/null || notify-send 'No GPU control app found'"
+    },
     "bluetooth": {
-        "format": "󰂯  {status}",
-        "format-connected": "󰂱  {device_alias}",
+        "format": "󰂯 {status}",
+        "format-connected": "󰂱 {device_alias}",
         "format-disabled": "󰂲",
         "format-off": "󰂲",
         "tooltip-format": "Bluetooth: {status}",
@@ -105,18 +167,18 @@
         "on-click": "~/.config/rofi/scripts/rofi-bluetooth.sh"
     },
     "temperature": {
-        "format": "󰔏  {temperatureC}°C",
+        "format": "󰔏 {temperatureC}°C",
         "critical-threshold": 80,
-        "format-critical": "󰸁  {temperatureC}°C",
-        "tooltip": true
+        "format-critical": "󰸁 {temperatureC}°C",
+        "tooltip-format": "CPU Temperature: {temperatureC}°C"
     },
     // ⚠️ HARDWARE-SPECIFIC: AMD GPU module
     // Check your card number with: ls /sys/class/drm/
     // Remove from modules-left if not using AMD GPU
     "custom/gpu-amd": {
         "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent 2>/dev/null || echo 'N/A'",
-        "format": "󰍹   {}%",
-        "interval": 2,
+        "format": "󰍹 {}%",
+        "interval": 5,
         "tooltip-format": "AMD GPU Usage"
     },
     // ⚠️ HARDWARE-SPECIFIC: NVIDIA GPU module
@@ -124,8 +186,8 @@
     // Remove from modules-left if not using NVIDIA GPU
     "custom/gpu-nvidia": {
         "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null || echo 'N/A'",
-        "format": "󰢮   {}%",
-        "interval": 2,
+        "format": "󰢮 {}%",
+        "interval": 5,
         "tooltip-format": "NVIDIA GPU Usage"
     }
 }
