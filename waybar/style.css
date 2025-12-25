@@ -1,19 +1,33 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   WAYBAR STYLESHEET
+   Part of HyprGlass rice
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   COLOR PALETTE
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Base colors */
 @define-color base rgba(0, 0, 0, 0.67);
 @define-color mantle rgba(0, 0, 0, 0.85);
 @define-color crust #000000;
 
+/* Text colors */
 @define-color text #d4d4d4;
 @define-color subtext0 #a0a0a0;
 @define-color subtext1 #b8b8b8;
 
+/* Surface colors */
 @define-color surface0 rgba(24, 24, 24, 1);
 @define-color surface1 #252525;
 @define-color surface2 #303030;
 
+/* Overlay colors */
 @define-color overlay0 #5a5a5a;
 @define-color overlay1 #6a6a6a;
 @define-color overlay2 #7a7a7a;
 
+/* Accent colors */
 @define-color cyan #33ccff;
 @define-color teal #00ff99;
 @define-color aqua #00cccc;
@@ -27,6 +41,10 @@
 @define-color purple #cc99ff;
 @define-color blue #6699ff;
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLOBAL STYLES
+   ─────────────────────────────────────────────────────────────────────────── */
+
 * {
     font-family: "Adwaita Sans", "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
@@ -36,10 +54,14 @@
     background-color: @base;
     color: @text;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
     border-radius: 0;
     margin: 0;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   WORKSPACES
+   ─────────────────────────────────────────────────────────────────────────── */
 
 #workspaces button {
     padding: 0 5px;
@@ -52,23 +74,38 @@
     border-radius: 0;
 }
 
-#clock,
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODULE BASE STYLES
+   Shared styles for all pill-shaped modules
+   ─────────────────────────────────────────────────────────────────────────── */
+
 #battery,
 #cpu,
 #memory,
 #network,
+#bluetooth,
 #pulseaudio,
+#temperature,
+#custom-gpu-amd,
+#custom-gpu-nvidia {
+    background-color: @surface0;
+    padding: 1px 10px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+}
+
 #tray {
     padding: 0 10px;
     margin: 0 4px;
-    color: @text;
 }
 
-#clock {
-    color: @cyan;
-}
+/* ─────────────────────────────────────────────────────────────────────────────
+   CENTER CLOCK MODULES
+   Three-tile date/time display
+   ─────────────────────────────────────────────────────────────────────────── */
 
-/* Center clock tiles - borderless with separators, accent on hover */
 #clock.time,
 #clock.day,
 #clock.date {
@@ -111,98 +148,24 @@
     border-bottom-color: @mint;
 }
 
-#battery {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @green;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODULE COLORS & HOVER STATES
+   Each module gets its accent color and hover underline
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* System monitors (left) */
+#custom-gpu-amd,
+#custom-gpu-nvidia {
+    color: @teal;
 }
 
-#battery:hover {
-    border-bottom-color: @green;
-}
-
-#cpu {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @red;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-#cpu:hover {
-    border-bottom-color: @red;
-}
-
-#memory {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @yellow;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-#memory:hover {
-    border-bottom-color: @yellow;
-}
-
-#network {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @aqua;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-#network:hover {
-    border-bottom-color: @aqua;
-}
-
-#bluetooth {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @blue;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-#bluetooth:hover {
-    border-bottom-color: @blue;
-}
-
-#pulseaudio {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @pink;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-#pulseaudio:hover {
-    border-bottom-color: @pink;
+#custom-gpu-amd:hover,
+#custom-gpu-nvidia:hover {
+    border-bottom-color: @teal;
 }
 
 #temperature {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
     color: @orange;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
 }
 
 #temperature:hover {
@@ -213,18 +176,52 @@
     color: @red;
 }
 
-#custom-gpu-amd,
-#custom-gpu-nvidia {
-    background-color: @surface0;
-    padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    color: @teal;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
+#cpu {
+    color: @red;
 }
 
-#custom-gpu-amd:hover,
-#custom-gpu-nvidia:hover {
-    border-bottom-color: @teal;
+#cpu:hover {
+    border-bottom-color: @red;
+}
+
+#memory {
+    color: @yellow;
+}
+
+#memory:hover {
+    border-bottom-color: @yellow;
+}
+
+/* Connectivity & audio (right) */
+#pulseaudio {
+    color: @pink;
+}
+
+#pulseaudio:hover {
+    border-bottom-color: @pink;
+}
+
+#bluetooth {
+    color: @blue;
+}
+
+#bluetooth:hover {
+    border-bottom-color: @blue;
+}
+
+#network {
+    color: @aqua;
+}
+
+#network:hover {
+    border-bottom-color: @aqua;
+}
+
+/* Power */
+#battery {
+    color: @green;
+}
+
+#battery:hover {
+    border-bottom-color: @green;
 }
