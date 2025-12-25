@@ -20,3 +20,46 @@ Thumbs.db
 # Cache directories
 __pycache__/
 .cache/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.cert
+*.crt
+secrets.*
+credentials.*
+
+# SSH and GPG keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.gpg
+
+# Personal notes and TODOs
+NOTES.md
+TODO.md
+PERSONAL.md
+
+# Backup files
+*.backup
+*.old
+*.orig
+
+# System-specific overrides
+# Use these if you want to create personal overrides that won't be committed
+*-local.conf
+*-personal.conf
+*.override.conf
+
+# Hyprland-specific
+hyprlock.conf      # May contain user-specific passwords/PINs
+hyprland.log       # Session logs
+crash_reports/
+
+# WiFi/Network credentials (if stored)
+wifi-passwords.txt
+network-creds.*
