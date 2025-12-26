@@ -1,46 +1,29 @@
 #!/bin/bash
-# Rofi WiFi Menu
+# Rofi WiFi Menu - Fast Loading
 
-# Set theme
 theme="$HOME/.config/rofi/menu.rasi"
 
-# Get status
-current=$(nmcli -t -f active,ssid,signal dev wifi | grep '^yes' | cut -d':' -f2)
-status=$(nmcli -t -f WIFI g)
+# Show menu IMMEDIATELY with static options
+options="Toggle WiFi\nConnect Network\nDisconnect"
 
-if [ "$status" = "enabled" ]; then
-    toggle="Disable WiFi"
-    icon="󰤨 "
-else
-    toggle="Enable WiFi"
-    icon="󰤭 "
-fi
-
-# Options
-option_connect="Connect Network"
-option_disconnect="Disconnect"
-
-# Main Menu
-options="$toggle\n$option_connect\n$option_disconnect"
-
-# Show Menu
-selected=$(echo -e "$options" | rofi -dmenu -i -p "WiFi: $current" -theme "$theme")
+selected=$(echo -e "$options" | rofi -dmenu -i -p "󰤨 WiFi" -theme "$theme")
 
 case $selected in
-    "$toggle")
+    "Toggle WiFi")
         nmcli radio wifi toggle
         ;;
-    "$option_connect")
-        # List available networks
+    "Connect Network")
         notify-send "Scanning networks..."
-        ssid=$(nmcli --colors no -f SSID,BARS dev wifi list | rofi -dmenu -i -p "Select Network" -theme "$theme" | awk '{print $1}')
+        ssid=$(nmcli --colors no -f SSID,BARS dev wifi list | tail -n +2 | rofi -dmenu -i -p "Select Network" -theme "$theme" | awk '{print $1}')
         if [ -n "$ssid" ]; then
-            password=$(rofi -dmenu -password -p "Password for $ssid" -theme "$theme")
-            nmcli device wifi connect "$ssid" password "$password"
+            # Try connecting without password first (for saved networks)
+            if ! nmcli device wifi connect "$ssid" 2>/dev/null; then
+                password=$(rofi -dmenu -password -p "Password for $ssid" -theme "$theme")
+                nmcli device wifi connect "$ssid" password "$password"
+            fi
         fi
         ;;
-    "$option_disconnect")
-        # Get active WiFi interface dynamically
+    "Disconnect")
         wifi_interface=$(nmcli -t -f DEVICE,TYPE device | grep wifi | cut -d: -f1 | head -n1)
         nmcli device disconnect "$wifi_interface"
         ;;

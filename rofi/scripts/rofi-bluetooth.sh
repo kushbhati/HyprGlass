@@ -1,52 +1,34 @@
 #!/bin/bash
-# Rofi Bluetooth Menu
+# Rofi Bluetooth Menu - Fast Loading
 
-# Set theme
 theme="$HOME/.config/rofi/menu.rasi"
 
-# Get status
-status=$(bluetoothctl show | grep "Powered: yes" | wc -l)
+# Show menu IMMEDIATELY with static options
+options="Toggle Bluetooth\nScan Devices\nConnect Device\nDisconnect Device"
 
-if [ $status -eq 1 ]; then
-    toggle="Disable Bluetooth"
-    state="On"
-else
-    toggle="Enable Bluetooth"
-    state="Off"
-fi
-
-# Options
-option_scan="Scan Devices"
-option_connect="Connect Device"
-option_disconnect="Disconnect Device"
-
-# Main Menu
-options="$toggle\n$option_scan\n$option_connect\n$option_disconnect"
-
-# Show Menu
-selected=$(echo -e "$options" | rofi -dmenu -i -p "Bluetooth: $state" -theme "$theme")
+selected=$(echo -e "$options" | rofi -dmenu -i -p "󰂯 Bluetooth" -theme "$theme")
 
 case $selected in
-    "$toggle")
-        if [ $status -eq 1 ]; then
+    "Toggle Bluetooth")
+        # Check current state only when toggling
+        status=$(bluetoothctl show | grep -c "Powered: yes")
+        if [ "$status" -eq 1 ]; then
             bluetoothctl power off
         else
             bluetoothctl power on
         fi
         ;;
-    "$option_scan")
-        term_cmd="kitty --class floating -e bluetoothctl scan on"
-        eval "$term_cmd"
+    "Scan Devices")
+        kitty --class floating -e bluetoothctl scan on &
         ;;
-    "$option_connect")
-        # List devices
+    "Connect Device")
         device=$(bluetoothctl devices | rofi -dmenu -i -p "Select Device" -theme "$theme")
         mac=$(echo "$device" | cut -d' ' -f2)
         if [ -n "$mac" ]; then
             bluetoothctl connect "$mac"
         fi
         ;;
-    "$option_disconnect")
+    "Disconnect Device")
         device=$(bluetoothctl devices | rofi -dmenu -i -p "Disconnect Device" -theme "$theme")
         mac=$(echo "$device" | cut -d' ' -f2)
         if [ -n "$mac" ]; then

@@ -1,45 +1,34 @@
 #!/bin/bash
-# Rofi Audio Menu
+# Rofi Audio Menu - Fast Loading
 
-# Set theme
 theme="$HOME/.config/rofi/menu.rasi"
 
-# Get current volume and source
-vol=$(pamixer --get-volume)
-is_muted=$(pamixer --get-mute)
+# Show menu IMMEDIATELY with static options
+options="Toggle Mute\nOutput Device\nInput Device\nAdvanced Controls (GUI)"
 
-if [ "$is_muted" = "true" ]; then
-    toggle="Unmute"
-    icon="󰝟 "
-else
-    toggle="Mute"
-    icon="󰕾 "
-fi
-
-# Options
-option_sink="Output Device"
-option_source="Input Device"
-option_gui="Advanced Controls (GUI)"
-
-# Main Menu
-options="$toggle\n$option_sink\n$option_source\n$option_gui"
-
-# Show Menu
-selected=$(echo -e "$options" | rofi -dmenu -i -p "Volume: $vol%" -theme "$theme")
+selected=$(echo -e "$options" | rofi -dmenu -i -p "󰕾 Audio" -theme "$theme")
 
 case $selected in
-    "$toggle")
+    "Toggle Mute")
         pamixer -t
         ;;
-    "$option_gui")
+    "Advanced Controls (GUI)")
         pavucontrol &
         ;;
-    "$option_sink")
-        # List sinks
-        sinks=$(pactl list sinks short | awk '{print $1, $2}')
-        selected_sink=$(echo "$sinks" | rofi -dmenu -i -p "Select Output" -theme "$theme" | awk '{print $1}')
+    "Output Device")
+        # Only fetch sinks when needed
+        sinks=$(pactl list sinks short | awk '{print $2}')
+        selected_sink=$(echo "$sinks" | rofi -dmenu -i -p "Select Output" -theme "$theme")
         if [ -n "$selected_sink" ]; then
             pactl set-default-sink "$selected_sink"
+        fi
+        ;;
+    "Input Device")
+        # Only fetch sources when needed
+        sources=$(pactl list sources short | grep -v monitor | awk '{print $2}')
+        selected_source=$(echo "$sources" | rofi -dmenu -i -p "Select Input" -theme "$theme")
+        if [ -n "$selected_source" ]; then
+            pactl set-default-source "$selected_source"
         fi
         ;;
 esac
