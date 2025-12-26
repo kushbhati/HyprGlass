@@ -7,38 +7,37 @@
    COLOR PALETTE
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* Base colors */
+/* Base colors - pure black for maximum contrast */
 @define-color base rgba(0, 0, 0, 0.67);
 @define-color mantle rgba(0, 0, 0, 0.85);
 @define-color crust #000000;
 
 /* Text colors */
-@define-color text #d4d4d4;
+@define-color text #e0e0e0;
 @define-color subtext0 #a0a0a0;
-@define-color subtext1 #b8b8b8;
+@define-color subtext1 #c0c0c0;
 
 /* Surface colors */
 @define-color surface0 rgba(24, 24, 24, 1);
-@define-color surface1 #252525;
-@define-color surface2 #303030;
+@define-color surface1 #2a2a2a;
+@define-color surface2 #3a3a3a;
 
 /* Overlay colors */
-@define-color overlay0 #5a5a5a;
+@define-color overlay0 #595959;
 @define-color overlay1 #6a6a6a;
-@define-color overlay2 #7a7a7a;
+@define-color overlay2 #808080;
 
-/* Accent colors */
+/* Accent colors - vibrant with consistent tone ~80 */
 @define-color cyan #33ccff;
-@define-color teal #00ff99;
-@define-color aqua #00cccc;
-@define-color mint #66ffcc;
-@define-color sky #66ddff;
-@define-color green #00ff99;
-@define-color yellow #ffff66;
-@define-color orange #ffaa33;
-@define-color red #ff6666;
-@define-color pink #ff99cc;
-@define-color purple #cc99ff;
+@define-color teal #44ddaa;
+@define-color sky #66ccff;
+@define-color mint #55ddbb;
+@define-color green #55cc88;
+@define-color yellow #cccc55;
+@define-color orange #ee9944;
+@define-color red #ee6666;
+@define-color pink #ee77aa;
+@define-color purple #bb88dd;
 @define-color blue #6699ff;
 
 /* ─────────────────────────────────────────────────────────────────────────────

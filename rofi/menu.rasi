@@ -1,27 +1,25 @@
 /**
  * HyprGlass Menu Theme
- * Compact popup style for system controls
- * Based on Apparent theme aesthetic
+ * Vibrant accents (~Tone 80) on dark backgrounds
  */
 
 * {
-    /* Primary Colors - Matching HyprGlass */
-    primary:          #00f5d4;
-    primary-alt:      #00bbf9;
-    accent:           #f15bb5;
-    accent-alt:       #fee440;
+    /* Primary Colors - vibrant */
+    primary:          #33ccff;   /* cyan */
+    primary-alt:      #44ddcc;   /* teal */
+    accent:           #ee77aa;   /* pink */
+    accent-alt:       #cccc55;   /* yellow */
     
     /* Background with transparency */
-    bg-solid:         #0a0a0f;
-    bg-trans:         #0a0a0fdd;
-    bg-element:       #1e1e2d99;
+    bg-solid:         #141414;   /* base */
+    bg-trans:         #141414dd; /* base @ 87% */
+    bg-element:       #18181899; /* surface0 @ 60% */
     
     /* Text Colors */
-    fg-primary:       #ffffff;
-    fg-secondary:     #ffffffb3;
-    fg-muted:         #ffffff66;
+    fg-primary:       #e0e0e0;   /* text */
+    fg-secondary:     #c0c0c0;   /* subtext1 */
+    fg-muted:         #808080;   /* overlay2 */
     
-    /* Layout */
     font: "Inter Medium 12";
 }
 
@@ -30,7 +28,6 @@ element-text, element-icon {
     text-color:       inherit;
 }
 
-/* ===== WINDOW ===== */
 window {
     width:            400px;
     background-color: @bg-trans;
@@ -41,7 +38,6 @@ window {
     location:         center;
 }
 
-/* ===== MAIN CONTAINER ===== */
 mainbox {
     background-color: transparent;
     children:         [inputbar, message, listview];
@@ -49,7 +45,6 @@ mainbox {
     padding:          16px;
 }
 
-/* ===== PROMPT/TITLE BAR ===== */
 inputbar {
     children:         [textbox-prompt];
     background-color: transparent;
@@ -67,12 +62,10 @@ textbox-prompt {
     font:             "Inter Bold 14";
 }
 
-/* Hide entry for menu mode */
 entry {
     enabled:          false;
 }
 
-/* ===== RESULTS LIST ===== */
 listview {
     border:           0px;
     padding:          0px;
@@ -84,7 +77,6 @@ listview {
     scrollbar:        false;
 }
 
-/* ===== INDIVIDUAL ITEMS ===== */
 element {
     orientation:      horizontal;
     padding:          14px 16px;
@@ -108,7 +100,7 @@ element selected.normal {
 
 element normal.active,
 element alternate.active {
-    background-color: #00f5d433;
+    background-color: #33ccff33;
     text-color:       @primary;
 }
 
@@ -117,14 +109,12 @@ element selected.active {
     text-color:       @bg-solid;
 }
 
-/* ===== ICONS ===== */
 element-icon {
     size:             24px;
     cursor:           inherit;
     background-color: transparent;
 }
 
-/* ===== TEXT LABELS ===== */
 element-text {
     vertical-align:   0.5;
     text-color:       inherit;
@@ -132,7 +122,6 @@ element-text {
     background-color: transparent;
 }
 
-/* ===== MESSAGE BOX ===== */
 message {
     background-color: transparent;
     padding:          8px 0px;

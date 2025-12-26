@@ -1,12 +1,22 @@
+/**
+ * HyprGlass Theme - App Launcher
+ * Vibrant accents (~Tone 80) on dark backgrounds
+ */
+
 * {
-    bg-col:  #1e1e2ee6;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    selected-col: #1e1e2e;
-    blue: #89b4fa;
-    fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
-    grey: #6c7086;
+    /* Neutrals */
+    bg-col:        #141414e6;   /* base @ 90% opacity */
+    bg-col-light:  #181818;     /* surface0 */
+    border-col:    #33ccff;     /* cyan */
+    selected-col:  #33ccff;     /* cyan */
+    
+    /* Text colors */
+    fg-col:        #e0e0e0;     /* text */
+    fg-col2:       #ee77aa;     /* pink */
+    grey:          #808080;     /* overlay2 */
+    
+    /* Accent */
+    accent:        #33ccff;     /* cyan */
 
     width: 600;
     font: "Adwaita Sans 12, JetBrainsMono Nerd Font 12";
@@ -27,7 +37,7 @@ element-text, element-icon , mode-switcher {
 window {
     fullscreen: true;
     background-color: @bg-col;
-    padding: 10%; /* Responsive padding */
+    padding: 10%;
 }
 
 mainbox {
@@ -43,11 +53,11 @@ inputbar {
     padding: 14px;
     margin: 0% 25% 0% 25%;
     border: 2px;
-    border-color: @blue;
+    border-color: @accent;
 }
 
 prompt {
-    enabled: false; /* Hide prompt label for cleaner look */
+    enabled: false;
 }
 
 entry {
@@ -93,7 +103,7 @@ element-text {
 }
 
 element selected {
-    background-color: @blue;
+    background-color: @accent;
     text-color: @bg-col-light;
     border-radius: 12px;
 }
