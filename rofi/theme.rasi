@@ -7,16 +7,16 @@
     /* Neutrals */
     bg-col:        #141414e6;   /* base @ 90% opacity */
     bg-col-light:  #181818;     /* surface0 */
-    border-col:    #33ccff;     /* cyan */
-    selected-col:  #33ccff;     /* cyan */
+    border-col:    #66ddee;     /* cyan */
+    selected-col:  #66ddee;     /* cyan */
     
     /* Text colors */
     fg-col:        #e0e0e0;     /* text */
-    fg-col2:       #ee77aa;     /* pink */
+    fg-col2:       #ff99aa;     /* pink */
     grey:          #808080;     /* overlay2 */
     
     /* Accent */
-    accent:        #33ccff;     /* cyan */
+    accent:        #66ddee;     /* cyan */
 
     width: 600;
     font: "Adwaita Sans 12, JetBrainsMono Nerd Font 12";

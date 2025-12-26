@@ -27,18 +27,18 @@
 @define-color overlay1 #6a6a6a;
 @define-color overlay2 #808080;
 
-/* Accent colors - vibrant with consistent tone ~80 */
-@define-color cyan #33ccff;
-@define-color teal #44ddaa;
-@define-color sky #66ccff;
-@define-color mint #55ddbb;
-@define-color green #55cc88;
-@define-color yellow #cccc55;
-@define-color orange #ee9944;
-@define-color red #ee6666;
-@define-color pink #ee77aa;
-@define-color purple #bb88dd;
-@define-color blue #6699ff;
+/* Accent colors - HCT Tone 80 */
+@define-color cyan #66ddee;
+@define-color teal #66dddd;
+@define-color sky #77ccff;
+@define-color mint #66ddcc;
+@define-color green #77dd88;
+@define-color yellow #ccdd66;
+@define-color orange #ffaa66;
+@define-color red #ff9999;
+@define-color pink #ff99aa;
+@define-color purple #dd99ff;
+@define-color blue #aaaaff;
 
 /* ─────────────────────────────────────────────────────────────────────────────
    GLOBAL STYLES

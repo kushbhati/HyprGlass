@@ -5,10 +5,10 @@
 
 * {
     /* Primary Colors - vibrant */
-    primary:          #33ccff;   /* cyan */
-    primary-alt:      #44ddcc;   /* teal */
-    accent:           #ee77aa;   /* pink */
-    accent-alt:       #cccc55;   /* yellow */
+    primary:          #66ddee;   /* cyan */
+    primary-alt:      #66dddd;   /* teal */
+    accent:           #ff99aa;   /* pink */
+    accent-alt:       #ccdd66;   /* yellow */
     
     /* Background with transparency */
     bg-solid:         #141414;   /* base */
@@ -100,7 +100,7 @@ element selected.normal {
 
 element normal.active,
 element alternate.active {
-    background-color: #33ccff33;
+    background-color: #66ddee33;
     text-color:       @primary;
 }
 
