@@ -12,6 +12,13 @@
     font: "Adwaita Sans 12, JetBrainsMono Nerd Font 12";
 }
 
+configuration {
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    close-on-click: true;
+}
+
 element-text, element-icon , mode-switcher {
     background-color: inherit;
     text-color:       inherit;

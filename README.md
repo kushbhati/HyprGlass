@@ -1,27 +1,26 @@
-# HyprGlass Configuration
+# HyprGlass
 
-This repository contains my personal configuration files (dotfiles) for Hyprland and related tools.
+Personal Hyprland dotfiles with a clean, modular configuration.
 
-## Project Structure
+## 📁 Structure
 
-- **hypr/**: Hyprland configuration (main config and modular files).
-- **kitty/**: Configuration for the Kitty terminal emulator.
-- **rofi/**: Configuration for Rofi (application launcher).
-- **waybar/**: Configuration for the Waybar status bar.
+| Folder | Description |
+|--------|-------------|
+| `hypr/` | Hyprland config (modular files in `conf/`) |
+| `kitty/` | Kitty terminal emulator |
+| `rofi/` | Rofi launcher + custom scripts |
+| `waybar/` | Waybar status bar |
 
-## Installation / Sync
+## 🚀 Installation
 
-To use these configurations, you need to link or copy the folders to your `~/.config` directory.
+Link or copy the folders to `~/.config`:
 
-### Method 1: Symbolic Links (Recommended)
-
-This method keeps your config files in this repository, so any changes you make are instantly reflected here (useful for version control).
+### Symbolic Links (Recommended)
 
 ```bash
-# Set HYPRGLASS_DIR to where you cloned this repo
-HYPRGLASS_DIR="$HOME/path/to/HyprGlass"  # <-- Adjust this path
+HYPRGLASS_DIR="$HOME/path/to/HyprGlass"  # <-- Adjust this
 
-# Backup existing configs if necessary
+# Backup existing configs
 mv ~/.config/hypr ~/.config/hypr.bak
 mv ~/.config/kitty ~/.config/kitty.bak
 mv ~/.config/rofi ~/.config/rofi.bak
@@ -34,13 +33,10 @@ ln -s "$HYPRGLASS_DIR/rofi" ~/.config/rofi
 ln -s "$HYPRGLASS_DIR/waybar" ~/.config/waybar
 ```
 
-### Method 2: Copying
-
-If you prefer to just copy the files:
+### Copy Instead
 
 ```bash
-# Set HYPRGLASS_DIR to where you cloned this repo
-HYPRGLASS_DIR="$HOME/path/to/HyprGlass"  # <-- Adjust this path
+HYPRGLASS_DIR="$HOME/path/to/HyprGlass"  # <-- Adjust this
 
 cp -r "$HYPRGLASS_DIR/hypr" ~/.config/
 cp -r "$HYPRGLASS_DIR/kitty" ~/.config/
@@ -48,26 +44,35 @@ cp -r "$HYPRGLASS_DIR/rofi" ~/.config/
 cp -r "$HYPRGLASS_DIR/waybar" ~/.config/
 ```
 
-## Dependencies
+## 📦 Dependencies
 
-Ensure you have the following programs installed:
-- Hyprland
-- Kitty
-- Rofi
-- Waybar
-- NetworkManager (`nmcli`) - for WiFi menu
-- BlueZ (`bluetoothctl`) - for Bluetooth menu
-- PulseAudio/PipeWire (`pamixer`, `pactl`) - for audio menu
+### Core
 
-### Hardware-Specific Notes
+| Package | Description |
+|---------|-------------|
+| `hyprland` | Wayland compositor |
+| `kitty` | Terminal emulator |
+| `rofi` | Application launcher |
+| `waybar` | Status bar |
 
-Some features are hardware-specific and may need adjustment:
+### Utilities
 
-- **GPU Monitoring** (Waybar): 
-  - AMD GPU requires checking your card number: `ls /sys/class/drm/`
-  - NVIDIA GPU requires `nvidia-smi` (part of NVIDIA drivers)
-  - Remove unused GPU modules from `waybar/config.jsonc` if not applicable
+| Package | Description |
+|---------|-------------|
+| `cliphist`, `wl-clipboard` | Clipboard management |
+| `brightnessctl` | Brightness control |
+| `playerctl` | Media playback control |
+| `wireplumber` | Audio control (`wpctl`) |
+| `networkmanager` | WiFi menu (`nmcli`) |
+| `bluez`, `bluez-utils` | Bluetooth menu (`bluetoothctl`) |
 
-- **Display Scaling** (`hypr/conf/monitor.conf`): 
-  - Default is set to 1.25 (125%)
-  - Adjust based on your display preferences (1.0, 1.25, 1.5, 2.0, etc.)
+## ⚙️ Hardware Notes
+
+- **GPU Monitoring** (Waybar):
+  - AMD: Check card path with `ls /sys/class/drm/`
+  - NVIDIA: Requires `nvidia-smi`
+  - Remove unused modules in `waybar/config.jsonc`
+
+- **Display Scaling** (`hypr/conf/monitor.conf`):
+  - Default: 1.25 (125%)
+  - Adjust to 1.0, 1.5, 2.0, etc. as needed

@@ -1,0 +1,14 @@
+configuration {
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    close-on-click: true;
+
+    kb-row-down: "Down";
+
+    kb-element-next: "Tab,Alt+Tab,Alt+Right";
+    kb-element-prev: "Alt+ISO_Left_Tab,Alt+Left";
+
+    kb-accept-entry: "!Alt_L,!Alt_R,Return";
+    window-thumbnail: true;
+}
