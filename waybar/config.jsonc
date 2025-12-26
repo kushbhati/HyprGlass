@@ -9,7 +9,8 @@
         "custom/gpu-nvidia",
         "temperature",
         "cpu",
-        "memory"
+        "memory",
+        "disk"
     ],
     "modules-center": [
         "clock#day",
@@ -24,7 +25,6 @@
         "backlight",
         "network",
         "bluetooth",
-        "custom/gpu-control",
         "power-profiles-daemon",
         "battery"
     ],
@@ -151,12 +151,9 @@
             }
         ]
     },
-    // ⚠️ GPU Control: Opens nvidia-settings or radeon-profile
-    // Requires: nvidia-settings (NVIDIA) or radeon-profile (AMD)
-    "custom/gpu-control": {
-        "format": "󰢮",
-        "tooltip-format": "GPU Settings",
-        "on-click": "nvidia-settings 2>/dev/null || radeon-profile 2>/dev/null || notify-send 'No GPU control app found'"
+    "disk": {
+        "format": "󰋊 {percentage_used}%",
+        "tooltip-format": "{used} / {total}"
     },
     "bluetooth": {
         "format": "󰂯 {status}",

@@ -18,7 +18,7 @@
 @define-color subtext1 #c0c0c0;
 
 /* Surface colors */
-@define-color surface0 rgba(24, 24, 24, 1);
+@define-color surface0 #181818;
 @define-color surface1 #2a2a2a;
 @define-color surface2 #3a3a3a;
 
@@ -27,18 +27,31 @@
 @define-color overlay1 #6a6a6a;
 @define-color overlay2 #808080;
 
-/* Accent colors - HCT Tone 80 */
-@define-color cyan #66ddee;
-@define-color teal #66dddd;
-@define-color sky #77ccff;
-@define-color mint #66ddcc;
-@define-color green #77dd88;
-@define-color yellow #ccdd66;
-@define-color orange #ffaa66;
+/* Accent colors - Tone 80 */
 @define-color red #ff9999;
-@define-color pink #ff99aa;
-@define-color purple #dd99ff;
+@define-color red_orange #ff9977;
+@define-color orange #ffaa66;
+@define-color amber #eebb55;
+@define-color gold #ddcc55;
+@define-color yellow #ccdd66;
+@define-color lime #aadd66;
+@define-color chartreuse #88dd77;
+@define-color green #77dd88;
+@define-color emerald #66ddaa;
+@define-color spring #66ddbb;
+@define-color mint #66ddcc;
+@define-color teal #66dddd;
+@define-color cyan #66ddee;
+@define-color sky #77ccff;
+@define-color azure #99bbff;
 @define-color blue #aaaaff;
+@define-color indigo #bb99ff;
+@define-color purple #dd99ff;
+@define-color violet #ee88ee;
+@define-color magenta #ff88dd;
+@define-color fuchsia #ff88bb;
+@define-color pink #ff99aa;
+@define-color rose #ff9999;
 
 /* ─────────────────────────────────────────────────────────────────────────────
    GLOBAL STYLES
@@ -126,10 +139,10 @@
 #backlight,
 #power-profiles-daemon,
 #idle_inhibitor,
-#custom-gpu-control,
 #temperature,
 #custom-gpu-amd,
-#custom-gpu-nvidia {
+#custom-gpu-nvidia,
+#disk {
     background-color: @surface0;
     padding: 1px 10px;
     margin: 4px 2px;
@@ -227,20 +240,20 @@
 }
 
 #memory {
-    color: @yellow;
+    color: @magenta;
 }
 
 #memory:hover {
-    border-bottom-color: @yellow;
+    border-bottom-color: @magenta;
 }
 
 /* Connectivity & audio (right) */
 #pulseaudio {
-    color: @pink;
+    color: @violet;
 }
 
 #pulseaudio:hover {
-    border-bottom-color: @pink;
+    border-bottom-color: @violet;
 }
 
 #bluetooth {
@@ -252,11 +265,11 @@
 }
 
 #network {
-    color: @aqua;
+    color: @sky;
 }
 
 #network:hover {
-    border-bottom-color: @aqua;
+    border-bottom-color: @sky;
 }
 
 /* Power */
@@ -294,11 +307,11 @@
 
 /* Power Profiles */
 #power-profiles-daemon {
-    color: @purple;
+    color: @cyan;
 }
 
 #power-profiles-daemon:hover {
-    border-bottom-color: @purple;
+    border-bottom-color: @cyan;
 }
 
 /* Idle Inhibitor */
@@ -320,11 +333,11 @@
     padding: 0 8px;
 }
 
-/* GPU Control */
-#custom-gpu-control {
-    color: @teal;
+/* Disk */
+#disk {
+    color: @indigo;
 }
 
-#custom-gpu-control:hover {
-    border-bottom-color: @teal;
+#disk:hover {
+    border-bottom-color: @indigo;
 }
