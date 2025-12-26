@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 40,
     "spacing": 0,
     "modules-left": [
         "hyprland/workspaces",
@@ -32,8 +32,9 @@
         "format": "{icon}",
         "on-click": "activate",
         "format-icons": {
-            "active": "",
-            "default": ""
+            "active": "",
+            "default": "",
+            "empty": ""
         },
         "persistent-workspaces": {
             "*": 5

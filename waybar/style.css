@@ -62,15 +62,54 @@
    WORKSPACES
    ─────────────────────────────────────────────────────────────────────────── */
 
+#workspaces {
+    background-color: transparent;
+    margin: 0 4px;
+}
+
 #workspaces button {
-    padding: 0 5px;
-    color: @cyan;
+    padding: 0 4px;
+    background: transparent;
+    color: @overlay1;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    border-radius: 0;
+    min-width: 20px;
+    /* Enforce stable width */
+}
+
+#workspaces button.empty {
+    color: @overlay0;
+    background: transparent;
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
 }
 
 #workspaces button.active {
-    color: @text;
-    background-color: @surface0;
+    color: @cyan;
+    background: transparent;
+    text-shadow: 0 0 5px rgba(102, 221, 238, 0.8), 0 0 10px rgba(102, 221, 238, 0.5);
     border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+
+#workspaces button:hover {
+    color: @cyan;
+    background: transparent;
+    text-shadow: 0 0 3px rgba(102, 221, 238, 0.5);
+    box-shadow: none;
+    border: none;
+}
+
+
+#workspaces button.urgent {
+    color: @red;
+    text-shadow: 0 0 5px rgba(255, 153, 153, 0.8);
+    background: transparent;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
