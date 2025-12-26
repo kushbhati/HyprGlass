@@ -6,6 +6,7 @@
     "modules-left": [
         "hyprland/workspaces",
         "custom/gpu-amd",
+        "custom/dgpu-status",
         "custom/gpu-nvidia",
         "temperature",
         "cpu",
@@ -38,7 +39,8 @@
         },
         "persistent-workspaces": {
             "*": 5
-        }
+        },
+        "show-special": true
     },
     "clock#time": {
         "format": "{:%I:%M %p}",
@@ -73,12 +75,14 @@
         "on-click": "~/.config/rofi/scripts/rofi-wifi.sh"
     },
     "cpu": {
-        "format": " {usage}%",
+        "format": "",
+        "format-alt": " {usage}%",
         "tooltip-format": "CPU Usage: {usage}%"
     },
     "memory": {
-        "format": "󰘚 {percentage}%",
-        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+        "format": "󰘚",
+        "format-alt": "󰘚 {percentage}%",
+        "tooltip-format": "{used:0.1f} GiB / {total:0.1f} GiB"
     },
     "battery": {
         "format": "{icon} {capacity}%",
@@ -152,11 +156,13 @@
         ]
     },
     "disk": {
-        "format": "󰋊 {percentage_used}%",
+        "format": "󰋊",
+        "format-alt": "󰋊 {percentage_used}%",
         "tooltip-format": "{used} / {total}"
     },
     "bluetooth": {
         "format": "󰂯 {status}",
+        "format-on": "󰂯",
         "format-connected": "󰂱 {device_alias}",
         "format-disabled": "󰂲",
         "format-off": "󰂲",
@@ -165,27 +171,39 @@
         "on-click": "~/.config/rofi/scripts/rofi-bluetooth.sh"
     },
     "temperature": {
-        "format": "󰔏 {temperatureC}°C",
+        "format": "󰔏",
+        "format-alt": "󰔏 {temperatureC}°",
         "critical-threshold": 80,
-        "format-critical": "󰸁 {temperatureC}°C",
-        "tooltip-format": "CPU Temperature: {temperatureC}°C"
+        "format-critical": "󰸁 {temperatureC}°",
+        "tooltip-format": "CPU Temperature: {temperatureC}°"
     },
     // ⚠️ HARDWARE-SPECIFIC: AMD GPU module
     // Check your card number with: ls /sys/class/drm/
     // Remove from modules-left if not using AMD GPU
     "custom/gpu-amd": {
-        "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent 2>/dev/null || echo 'N/A'",
-        "format": "󰍹 {}%",
+        "exec": "usage=$(cat /sys/class/drm/card1/device/gpu_busy_percent 2>/dev/null || echo 'N/A'); temp=$(( $(cat /sys/class/drm/card1/device/hwmon/hwmon*/temp1_input 2>/dev/null | head -n1 || echo 0) / 1000 )); echo \"${usage}% ${temp}°\"",
+        "format": "󰍹",
+        "format-alt": "󰍹 {}",
         "interval": 5,
-        "tooltip-format": "AMD GPU Usage"
+        "tooltip-format": "AMD GPU: {}"
     },
     // ⚠️ HARDWARE-SPECIFIC: NVIDIA GPU module
     // Requires nvidia-smi (NVIDIA drivers)
     // Remove from modules-left if not using NVIDIA GPU
     "custom/gpu-nvidia": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null || echo 'N/A'",
-        "format": "󰢮 {}%",
+        "exec-if": "grep -q \"active\" /sys/bus/pci/devices/0000:01:00.0/power/runtime_status 2>/dev/null",
+        "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits | awk -F', ' '{print $1\"% \"$2\"°\"}' 2>/dev/null || echo 'N/A'",
+        "format": "󰢮",
+        "format-alt": "󰢮 {}",
+        "interval": 30,
+        "tooltip-format": "NVIDIA GPU: {}"
+    },
+    // dGPU Power Status - Shows if NVIDIA GPU is active or suspended
+    "custom/dgpu-status": {
+        "exec": "status=$(cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status 2>/dev/null || echo 'unknown'); if [ \"$status\" = \"active\" ]; then echo 'ON'; else echo 'OFF'; fi",
+        "format": "󰢮",
+        "format-alt": "󰢮 {}",
         "interval": 5,
-        "tooltip-format": "NVIDIA GPU Usage"
+        "tooltip-format": "dGPU Status: {}"
     }
 }

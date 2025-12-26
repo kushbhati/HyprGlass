@@ -82,47 +82,47 @@
 
 #workspaces button {
     padding: 0 4px;
+    min-width: 20px;
     background: transparent;
     color: @overlay1;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    box-shadow: none;
-    text-shadow: none;
     border: none;
     border-radius: 0;
-    min-width: 20px;
-    /* Enforce stable width */
+    box-shadow: none;
+    text-shadow: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 #workspaces button.empty {
     color: @overlay0;
-    background: transparent;
-    box-shadow: none;
-    text-shadow: none;
-    border: none;
 }
 
 #workspaces button.active {
     color: @cyan;
-    background: transparent;
     text-shadow: 0 0 5px rgba(102, 221, 238, 0.8), 0 0 10px rgba(102, 221, 238, 0.5);
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
 }
 
 #workspaces button:hover {
     color: @cyan;
-    background: transparent;
     text-shadow: 0 0 3px rgba(102, 221, 238, 0.5);
-    box-shadow: none;
-    border: none;
 }
-
 
 #workspaces button.urgent {
     color: @red;
     text-shadow: 0 0 5px rgba(255, 153, 153, 0.8);
-    background: transparent;
+}
+
+#workspaces button.special {
+    color: @fuchsia;
+}
+
+#workspaces button.special.active {
+    color: @fuchsia;
+    text-shadow: 0 0 5px rgba(255, 153, 255, 0.8), 0 0 10px rgba(255, 153, 255, 0.5);
+}
+
+#workspaces button.special:hover {
+    color: @fuchsia;
+    text-shadow: 0 0 5px rgba(255, 153, 255, 0.8);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -142,6 +142,7 @@
 #temperature,
 #custom-gpu-amd,
 #custom-gpu-nvidia,
+#custom-dgpu-status,
 #disk {
     background-color: @surface0;
     padding: 1px 10px;
@@ -217,6 +218,15 @@
 #custom-gpu-amd:hover,
 #custom-gpu-nvidia:hover {
     border-bottom-color: @teal;
+}
+
+/* dGPU Status - Green when active, default when off */
+#custom-dgpu-status {
+    color: @green;
+}
+
+#custom-dgpu-status:hover {
+    border-bottom-color: @green;
 }
 
 #temperature {
