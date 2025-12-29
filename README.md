@@ -109,3 +109,37 @@ Change `1.25` to `1` for 100% or `1.5` for 150%.
 - **Brightness**: `Fn` keys (requires `brightnessctl`)
 - **Volume**: `Fn` keys (requires `wireplumber`)
 - **Media**: Play/Pause/Next/Prev keys works globally (requires `playerctl`)
+
+---
+
+## 🎛️ Waybar
+
+HyprGlass includes a fully themed Waybar with integrated module groups and hover effects.
+
+### Module Layout
+
+| Position | Modules |
+|----------|---------|
+| **Left** | Workspaces, GPU (AMD/NVIDIA), Temperature, CPU, Memory, Disk, Privacy |
+| **Center** | Clock (Day \| Time \| Date) |
+| **Right** | Tray, MPRIS, Idle + PPD, Audio → Battery (edge-aligned) |
+
+### Features
+
+- **Click to toggle**: Most modules support `format-alt` (click to show additional info)
+- **Integrated groups**: Clock, Idle+PPD, and Audio→Battery are visually connected
+- **Edge-aligned**: Battery extends flush to the screen edge
+- **Hover underlines**: Accent-colored underlines appear on hover
+- **MPRIS**: Shows player icon, name, and play/pause status (hidden when stopped)
+
+### Waybar Module Interactions
+
+| Module | Left Click | Right Click | Scroll |
+|--------|------------|-------------|--------|
+| Pulseaudio | Toggle volume % | Rofi audio menu | Volume up/down |
+| Backlight | Toggle brightness % | - | Brightness up/down |
+| Network | Toggle SSID | Rofi WiFi menu | - |
+| Bluetooth | Toggle status | Rofi Bluetooth menu | - |
+| Battery | Toggle capacity % | - | - |
+| Power Profiles | Toggle profile name | - | - |
+| MPRIS | Play/Pause | - | - |

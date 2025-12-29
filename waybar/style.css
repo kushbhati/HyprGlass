@@ -8,7 +8,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* Base colors - pure black for maximum contrast */
-@define-color base rgba(0, 0, 0, 0.67);
+@define-color base rgba(0, 0, 0, 0.75);
 @define-color mantle rgba(0, 0, 0, 0.85);
 @define-color crust #000000;
 
@@ -112,17 +112,15 @@
 }
 
 #workspaces button.special {
-    color: @fuchsia;
+    color: @emerald;
 }
 
 #workspaces button.special.active {
-    color: @fuchsia;
-    text-shadow: 0 0 5px rgba(255, 153, 255, 0.8), 0 0 10px rgba(255, 153, 255, 0.5);
+    text-shadow: 0 0 5px rgba(102, 221, 238, 0.8), 0 0 10px rgba(102, 221, 238, 0.5);
 }
 
 #workspaces button.special:hover {
-    color: @fuchsia;
-    text-shadow: 0 0 5px rgba(255, 153, 255, 0.8);
+    text-shadow: 0 0 5px rgba(102, 221, 238, 0.8);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -130,26 +128,87 @@
    Shared styles for all pill-shaped modules
    ─────────────────────────────────────────────────────────────────────────── */
 
-#battery,
+/* Left Integrated Group (gpu-amd to disk) */
+#custom-gpu-amd,
+#custom-dgpu-status,
+#custom-gpu-nvidia,
+#temperature,
 #cpu,
 #memory,
-#network,
-#bluetooth,
-#pulseaudio,
-#backlight,
-#power-profiles-daemon,
-#idle_inhibitor,
-#temperature,
-#custom-gpu-amd,
-#custom-gpu-nvidia,
-#custom-dgpu-status,
 #disk {
     background-color: @surface0;
     padding: 1px 10px;
-    margin: 4px 2px;
-    border-radius: 8px;
+    margin: 4px 0;
+    border-radius: 0;
     border-bottom: 2px solid transparent;
+    border-left: 1px solid rgba(90, 90, 90, 0.3);
     transition: border-bottom-color 0.3s ease;
+}
+
+#custom-gpu-amd {
+    border-radius: 8px 0 0 8px;
+    margin-left: 2px;
+    padding-left: 12px;
+    border-left: none;
+}
+
+#disk {
+    border-radius: 0 8px 8px 0;
+    margin-right: 2px;
+    padding-right: 12px;
+}
+
+/* Integrated Group (idle + ppd) */
+#idle_inhibitor,
+#power-profiles-daemon {
+    background-color: @surface0;
+    padding: 1px 10px;
+    margin: 4px 0;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    border-left: 1px solid rgba(90, 90, 90, 0.3);
+    transition: border-bottom-color 0.3s ease;
+}
+
+#idle_inhibitor {
+    border-radius: 8px 0 0 8px;
+    margin-left: 2px;
+    padding-left: 12px;
+    border-left: none;
+}
+
+#power-profiles-daemon {
+    border-radius: 0 8px 8px 0;
+    margin-right: 2px;
+    padding-right: 12px;
+}
+
+/* Right Integrated Group (pulseaudio to battery) */
+#pulseaudio,
+#backlight,
+#network,
+#bluetooth,
+#battery {
+    background-color: @surface0;
+    padding: 1px 10px;
+    margin: 4px 0;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    border-left: 1px solid rgba(90, 90, 90, 0.3);
+    transition: border-bottom-color 0.3s ease;
+}
+
+#pulseaudio {
+    border-radius: 8px 0 0 8px;
+    margin-left: 2px;
+    padding-left: 12px;
+    border-left: none;
+}
+
+#battery {
+    border-radius: 0;
+    margin-right: 0;
+    padding-right: 12px;
 }
 
 #tray {
@@ -350,4 +409,23 @@
 
 #disk:hover {
     border-bottom-color: @indigo;
+}
+
+/* Media Player (MPRIS) */
+#mpris {
+    background-color: @surface0;
+    color: @fuchsia;
+    padding: 1px 10px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+}
+
+#mpris:hover {
+    border-bottom-color: @fuchsia;
+}
+
+#mpris.paused {
+    color: @subtext0;
 }
