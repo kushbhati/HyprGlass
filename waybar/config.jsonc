@@ -145,7 +145,11 @@
     },
     "power-profiles-daemon": {
         "format": "{icon}",
+<<<<<<< HEAD
         "tooltip-format": "Power profile: {profile}",
+=======
+        "tooltip-format": "Power Profile: {profile}",
+>>>>>>> 3306f28 (fix: Improve capitalization and wording)
         "format-icons": {
             "default": "",
             "performance": "",
@@ -159,8 +163,8 @@
             "activated": "󰈈",
             "deactivated": "󰈉"
         },
-        "tooltip-format-activated": "Idle inhibitor: ON",
-        "tooltip-format-deactivated": "Idle inhibitor: OFF"
+        "tooltip-format-activated": "Idle Inhibitor: Activated",
+        "tooltip-format-deactivated": "Idle Inhibitor: Deactivated"
     },
     "privacy": {
         "icon-size": 14,
