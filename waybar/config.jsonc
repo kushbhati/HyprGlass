@@ -145,11 +145,7 @@
     },
     "power-profiles-daemon": {
         "format": "{icon}",
-<<<<<<< HEAD
-        "tooltip-format": "Power profile: {profile}",
-=======
         "tooltip-format": "Power Profile: {profile}",
->>>>>>> 3306f28 (fix: Improve capitalization and wording)
         "format-icons": {
             "default": "",
             "performance": "",
