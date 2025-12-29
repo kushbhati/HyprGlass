@@ -57,7 +57,6 @@
     },
     "pulseaudio": {
         "format": "{icon}",
-        "format-alt": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
             "default": [
@@ -66,28 +65,35 @@
                 "󰕾"
             ]
         },
+        "tooltip-format": "Volume: {volume}%",
         "scroll-step": 5,
-        "on-click-right": "~/.config/rofi/scripts/rofi-audio.sh"
+        "on-click": "~/.config/rofi/scripts/rofi-audio.sh"
     },
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "󰈀",
-        "format-linked": "󰈀",
-        "format-disconnected": "󰤭",
-        "format-disabled": "󰤮",
-        "format-alt": "{icon} {essid}",
+        "format-ethernet": "{icon}",
+        "format-linked": "{icon}",
+        "format-disconnected": "{icon}",
+        "format-disabled": "{icon}",
+        "tooltip-format": "{ifname}",
         "tooltip-format-wifi": "WiFi: {essid} ({signalStrength}%)\nIP: {ipaddr}",
         "tooltip-format-ethernet": "Ethernet: {ifname}\nIP: {ipaddr}",
         "tooltip-format-disconnected": "Disconnected",
         "tooltip-format-disabled": "Disabled",
-        "format-icons": [
-            "󰤯",
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-        ],
-        "on-click-right": "~/.config/rofi/scripts/rofi-wifi.sh"
+        "format-icons": {
+            "wifi": [
+                "󰤯",
+                "󰤟",
+                "󰤢",
+                "󰤥",
+                "󰤨"
+            ],
+            "ethernet": "󰈀",
+            "linked": "󰌷",
+            "disconnected": "󰤭",
+            "disabled": "󰤮"
+        },
+        "on-click": "~/.config/rofi/scripts/rofi-wifi.sh"
     },
     "cpu": {
         "format": "",
@@ -100,17 +106,17 @@
         "tooltip-format": "{used:0.1f} GiB / {total:0.1f} GiB"
     },
     "battery": {
-        "format": "{icon}",
-        "format-alt": "{icon} {capacity}%",
+        "format": "{icon} {capacity}%",
         "format-charging": "󰂄",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-full": "󰁹",
+        "format-plugged": "󰚥 DC",
+        "format-full": "󰁹 Full",
         "tooltip-format": "Battery: {capacity}%",
         "states": {
             "low": 30,
             "critical": 15
         },
         "format-icons": [
+            "󰂃",
             "󰁺",
             "󰁻",
             "󰁼",
@@ -128,7 +134,6 @@
     },
     "backlight": {
         "format": "{icon}",
-        "format-alt": "{icon} {percent}%",
         "format-icons": [
             "󰃞",
             "󰃟",
@@ -140,7 +145,6 @@
     },
     "power-profiles-daemon": {
         "format": "{icon}",
-        "format-alt": "{icon} {profile}",
         "tooltip-format": "Power profile: {profile}",
         "format-icons": {
             "default": "",
@@ -183,16 +187,16 @@
     },
     "bluetooth": {
         "format": "{icon}",
-        "format-alt": "{icon} {status}",
         "tooltip-format": "Bluetooth: {status}",
         "tooltip-format-connected": "Connected: {device_alias}",
         "format-icons": {
-            "on": "�",
-            "off": "�",
-            "disabled": "�",
-            "connected": "󰂱"
+            "on": "󰂯",
+            "off": "󰂲",
+            "disabled": "",
+            "connected": "󰂱",
+            "no-controller": ""
         },
-        "on-click-right": "~/.config/rofi/scripts/rofi-bluetooth.sh"
+        "on-click": "~/.config/rofi/scripts/rofi-bluetooth.sh"
     },
     "mpris": {
         "format": "{player_icon} {player} {status_icon}",
@@ -206,7 +210,7 @@
             "default": "󰎈",
             "Spotify": "󰓇",
             "Firefox": "󰈹",
-            "Chromium": "",
+            "Chromium": "",
             "mpv": "󰎁"
         },
         "on-click-right": "",
